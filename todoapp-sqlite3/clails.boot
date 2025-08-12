@@ -9,3 +9,5 @@
 (let ((envname (uiop:getenv "CLAILS_ENV")))
   (when envname
     (clails/environment:set-environment envname)))
+
+(todoapp-sqlite3/config/database:initialize-database-config)
