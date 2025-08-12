@@ -1,0 +1,53 @@
+<% in-package :todoapp-sqlite3/controllers/todo-controller %>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>todo</title>
+  <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml">
+</head>
+<body>
+  <h1>todo</h1>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>created_at</th>
+        <th>updated_at</th>
+        <th>done?</th>
+        <th>done_at</th>
+      </tr>
+    </thead>
+      <% loop for r in (records (@ controller)) do %>
+        <tr>
+          <td><%= (write-to-string (ref r :id)) %></td>
+          <td><%= (ref r :title) %></td>
+          <td><%= (view/datetime (ref r :created-at)) %></td>
+          <td><%= (view/datetime (ref r :updated-at)) %></td>
+          <td><% if (ref r :done) %>
+                done
+              <% else %>
+                <form action="/todo/<%= (write-to-string (ref r :id)) %>" method="POST">
+                  <input type="hidden" name="_method" value="PUT" />
+                  <input type="submit" value="done" />
+                </form>
+              <% end %>
+          </td>
+          <td><%= (view/datetime (ref r :done-at)) %></td>
+        </tr>
+      <% end %>
+    <tbody>
+    </tbody>
+  </table>
+
+  <h1>add your task</h1>
+  <form action="/todo" method="POST">
+    <label for="name">task</label>
+    <input type="text" name="name" id="name" required />
+    <input type="submit" value="add" />
+  </form>
+
+</body>
+</html>
