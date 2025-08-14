@@ -1,0 +1,32 @@
+<% in-package :todoapp-rest/controllers/application-controller %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to clails framework</title>
+  <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml">
+</head>
+<body>
+  <h1>todo</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>created_at</th>
+        <th>updated_at</th>
+        <th>done?</th>
+        <th>done_at</th>
+      </tr>
+    </thead>
+    <tbody id="task-list">
+    </tbody>
+  </table>
+
+  <h1>add your task</h1>
+  <input type="text" id="task-input" placeholder="your task..." />
+  <button id="add-task-button">add</button>
+  <script type="module" src="asset/javascript/main.js"></script>
+</body>
+</html>

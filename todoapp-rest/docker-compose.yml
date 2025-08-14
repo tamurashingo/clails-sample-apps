@@ -1,0 +1,15 @@
+services:
+  clails:
+    image: todoapp_rest_app
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: todoapp_rest_app
+    volumes:
+      - ./:/app
+    ports:
+      - 4005:4005
+      - 5000:5000
+    environment:
+      CLAILS_CONF_DIR: /app/conf
+    tty: true
